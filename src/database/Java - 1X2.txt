@@ -1,8 +1,9 @@
 CREATE TABLE java1x2(
     java1x2Id INT NOT NULL AUTO_INCREMENT,
     java1x2Question VARCHAR(255),
-    java1x2Answer VARCHAR(255),
-    java1x2WrongAnswer1 VARCHAR(255),
-    java1x2WrongAnswer2 VARCHAR(255),
+    java1x2Answer1 VARCHAR(255),
+    java1x2Answer2 VARCHAR(255),
+    java1x2Answer3 VARCHAR(255),
+    java1x2CorrectAnswer INT,
     PRIMARY KEY (java1x2Id)
 );
