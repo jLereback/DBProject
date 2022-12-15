@@ -3,7 +3,7 @@ package entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pythonTrueFalse", schema = "dbProject", catalog = "")
+@Table(name = "pythonTrueFalse", schema = "dbProject")
 public class PythonTrueFalseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id

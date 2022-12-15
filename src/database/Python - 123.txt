@@ -1,0 +1,12 @@
+CREATE TABLE python123
+(
+    python123Id            INT NOT NULL AUTO_INCREMENT,
+    python123Question      VARCHAR(255),
+    python123Answer1       VARCHAR(255),
+    python123Answer2       VARCHAR(255),
+    python123Answer3       VARCHAR(255),
+    python123CorrectAnswer INT,
+    PRIMARY KEY (python123Id)
+);
+
+CREATE UNIQUE INDEX uniqueQuestion ON python123(python123Question);

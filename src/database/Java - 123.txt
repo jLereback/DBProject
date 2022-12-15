@@ -1,0 +1,11 @@
+CREATE TABLE java123(
+    java123Id INT NOT NULL AUTO_INCREMENT,
+    java123Question VARCHAR(255),
+    java123Answer1 VARCHAR(255),
+    java123Answer2 VARCHAR(255),
+    java123Answer3 VARCHAR(255),
+    java123CorrectAnswer INT,
+    PRIMARY KEY (java123Id)
+);
+
+CREATE UNIQUE INDEX uniqueQuestion ON java123(java123Question);
