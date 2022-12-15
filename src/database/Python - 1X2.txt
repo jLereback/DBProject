@@ -1,9 +1,12 @@
-CREATE TABLE python1x2(
-    python1x2Id INT NOT NULL AUTO_INCREMENT,
-    python1x2Question VARCHAR(255),
-    python1x2Answer1 VARCHAR(255),
-    python1x2Answer2 VARCHAR(255),
-    python1x2Answer3 VARCHAR(255),
+CREATE TABLE python1x2
+(
+    python1x2Id            INT NOT NULL AUTO_INCREMENT,
+    python1x2Question      VARCHAR(255),
+    python1x2Answer1       VARCHAR(255),
+    python1x2Answer2       VARCHAR(255),
+    python1x2Answer3       VARCHAR(255),
     python1x2CorrectAnswer INT,
     PRIMARY KEY (python1x2Id)
 );
+
+CREATE UNIQUE INDEX uniqueQuestion ON python1x2(python1x2Question);

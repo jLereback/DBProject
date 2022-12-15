@@ -1,6 +1,8 @@
 CREATE TABLE javaTrueFalse(
     javaTFId INT NOT NULL AUTO_INCREMENT,
     javaTFQuestion VARCHAR(255),
-    javaTFAnswer VARCHAR(255),
+    javaTFAnswer BOOLEAN,
     PRIMARY KEY (javaTFId)
 );
+
+CREATE UNIQUE INDEX uniqueQuestion ON javaTrueFalse(javaTFQuestion);

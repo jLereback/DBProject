@@ -1,9 +1,8 @@
-CREATE TABLE pythonTrueFalse(
-    pythonTFId INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE pythonTrueFalse
+(
+    pythonTFId       INT NOT NULL AUTO_INCREMENT,
     pythonTFQuestion VARCHAR(255),
-    pythonTFAnswer VARCHAR(255),
+    pythonTFAnswer   BOOLEAN,
     PRIMARY KEY (pythonTFId)
-
-    CREATE UNIQUE INDEX uniqueQuestion ON pythonTrueFalse(pythonTFQuestion);
-
 );
+CREATE UNIQUE INDEX uniqueQuestion ON pythonTrueFalse (pythonTFQuestion);
