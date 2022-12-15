@@ -7,3 +7,5 @@ CREATE TABLE java1x2(
     java1x2CorrectAnswer INT,
     PRIMARY KEY (java1x2Id)
 );
+
+test
