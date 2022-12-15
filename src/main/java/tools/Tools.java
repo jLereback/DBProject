@@ -20,6 +20,7 @@ public class Tools {
 		}
 		return n;
 	}
+
 	public static int getInt(Scanner sc) {
 		while (true) {
 			try {
@@ -29,7 +30,6 @@ public class Tools {
 			}
 		}
 	}
-
 
 	public static byte getBoolean(Scanner sc) {
 		do {
@@ -50,4 +50,5 @@ public class Tools {
 	public static void incorrectInput() {
 		System.out.println("Incorrect input, please try again!");
 	}
+
 }
