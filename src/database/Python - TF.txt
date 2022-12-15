@@ -6,3 +6,10 @@ CREATE TABLE pythonTrueFalse
     PRIMARY KEY (pythonTFId)
 );
 CREATE UNIQUE INDEX uniqueQuestion ON pythonTrueFalse (pythonTFQuestion);
+
+INSERT INTO pythonTrueFalse (pythonTFQuestion, pythonTFAnswer)
+VALUES ('Python is a case sensitive language?', true),
+       ('Python is object-oriented language?', true),
+       ('Python is a compiled language?', 'false');
+       ('Python django library is used for game development?', 'false');
+       ('Python is a interpreted language?', 'true');

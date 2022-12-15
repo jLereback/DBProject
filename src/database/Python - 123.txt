@@ -10,3 +10,8 @@ CREATE TABLE python123
 );
 
 CREATE UNIQUE INDEX uniqueQuestion ON python123(python123Question);
+
+INSERT INTO python123(python123Question, python123Answer1, python123Answer2, python123Answer3, python123CorrectAnswer)
+VALUES ('Which of the following lines of code would select the letter d from my list?\nmylist = [''a'',''b'',''c'',''d'',''e'']', 'mylist[4]', 'mylist{3}','mylist[3]', 3),
+       ('Which of the following has the correct syntax of a dictionary in Python?', 'my_dict = {1: one, 2: two, 3; three}','my_dict = {1: "one", 2: "two", 3: "three"}', 'my_dict = [1: "one"; 2: "two"; 3: "three"]',2),
+       ('What is the output of the len() function used here?\nstring1 = "I''ts going to snow."\nprint(len(string1))', '19', 'It''s going to snow.', '4',1);

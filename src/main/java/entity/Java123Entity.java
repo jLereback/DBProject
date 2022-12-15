@@ -30,7 +30,7 @@ public class Java123Entity {
 		return java123Id;
 	}
 
-	public void setjava123Id(int java123Id) {
+	public void setJava123Id(int java123Id) {
 		this.java123Id = java123Id;
 	}
 
@@ -38,7 +38,7 @@ public class Java123Entity {
 		return java123Question;
 	}
 
-	public void setjava123Question(String java123Question) {
+	public void setJava123Question(String java123Question) {
 		this.java123Question = java123Question;
 	}
 

@@ -9,3 +9,9 @@ CREATE TABLE java123(
 );
 
 CREATE UNIQUE INDEX uniqueQuestion ON java123(java123Question);
+
+INSERT INTO java123 (java123Question, java123Answer1, java123Answer2, java123Answer3, java123CorrectAnswer)
+VALUES ('What is the appropriate data type for the three variables?\na = 10;\nb = 20;\nc = a + b;', 'char', 'String', 'int', 3),
+       ('For printing in Java, which of the following methods is used?', 'println', 'printf','out', 1),
+       ('Complete the Java code block that prints the word "Earth" to the console.\nString value = "Earth";\nSystem.out.println(_____);','Earth','value','''Earth''', 2),
+       ('Which of the following is the most suitable data type for storing whole numbers in java?','int',  'String', 'char',1);

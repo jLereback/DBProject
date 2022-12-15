@@ -6,3 +6,8 @@ CREATE TABLE javaTrueFalse(
 );
 
 CREATE UNIQUE INDEX uniqueQuestion ON javaTrueFalse(javaTFQuestion);
+
+INSERT INTO javaTrueFalse (javaTFQuestion, javaTFAnswer)
+VALUES ('The value of a variable declared with the final keyword can be changed after it''s initial declaration', true),
+       ('Will this line throw a compilation error?', 'double isRaining = false;', true),
+       ('-400.40 is a valid value for the type int', 'false');
