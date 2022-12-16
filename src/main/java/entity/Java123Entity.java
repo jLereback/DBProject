@@ -106,4 +106,14 @@ public class Java123Entity {
 		result = 31 * result + (java123CorrectAnswer != null ? java123CorrectAnswer.hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Question ID: " + java123Id + "\n" +
+				"Question: " + java123Question + "\n" +
+				"Answer 1: " + java123Answer1 + "\n" +
+				"Answer 2: " + java123Answer2 + "\n" +
+				"Answer 3: " + java123Answer3 + "\n" +
+				"Correct answer: " + java123CorrectAnswer + "\n";
+	}
 }

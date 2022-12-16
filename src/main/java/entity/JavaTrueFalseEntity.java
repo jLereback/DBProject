@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "javaTrueFalse", schema = "dbProject")
-public class JavaTrueFalseEntity {
+public class  JavaTrueFalseEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "javaTFId")
@@ -61,5 +61,13 @@ public class JavaTrueFalseEntity {
 		result = 31 * result + (javaTfQuestion != null ? javaTfQuestion.hashCode() : 0);
 		result = 31 * result + (javaTfAnswer != null ? javaTfAnswer.hashCode() : 0);
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "Question ID: " + javaTfId + "\n" +
+				"Question: " + javaTfQuestion + "\n" +
+				"Answer: " + javaTfAnswer + "\n";
+
 	}
 }

@@ -63,4 +63,12 @@ public class PythonTrueFalseEntity {
 		result = 31 * result + (pythonTfAnswer != null ? pythonTfAnswer.hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Question ID: " + pythonTfId + "\n" +
+				"Question: " + pythonTfQuestion + "\n" +
+				"Answer: " + pythonTfAnswer + "\n";
+
+	}
 }
