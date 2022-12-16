@@ -74,7 +74,7 @@ public class Create {
 	public static void addToPython123(EntityManager entityManager, Scanner sc) {
 		Python123Entity python123 = new Python123Entity();
 
-		System.out.println("Enter the new qQuestion: ");
+		System.out.println("Enter the new Question: ");
 		python123.setPython123Question(sc.nextLine());
 
 		System.out.print("Enter answer 1: ");
