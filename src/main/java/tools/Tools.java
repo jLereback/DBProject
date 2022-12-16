@@ -50,9 +50,9 @@ public class Tools {
 	public static byte getBoolean(Scanner sc) {
 		do {
 			String answer = sc.nextLine().toLowerCase();
-			if (answer.equals("true"))
+			if (answer.equals("true") || answer.equals("1"))
 				return 1;
-			else if (answer.equals("false"))
+			else if (answer.equals("false")|| answer.equals("0"))
 				return 0;
 			else
 				incorrectInput();

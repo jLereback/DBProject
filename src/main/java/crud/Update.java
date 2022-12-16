@@ -81,7 +81,7 @@ public class Update {
 
 	}
 	private static void askForQuestionToUpdate() {
-		System.out.println("Which question would you like to update?: ");
+		System.out.println("Which question ID would you like to update?: ");
 	}
 
 }

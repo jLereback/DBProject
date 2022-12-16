@@ -2,64 +2,61 @@ package quiz;
 
 import entity.JavaTrueFalseEntity;
 import jakarta.persistence.EntityManager;
-import tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
+
+import static tools.QuizTools.*;
+import static tools.Tools.getBoolean;
 
 public class JavaTrueFalseQuiz {
 	static int quizLength;
+	static int score;
 
 	public static void javaTrueOrFalse(EntityManager entityManager, Scanner sc) {
-
+		score = 0;
 		List<JavaTrueFalseEntity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM JavaTrueFalseEntity j").getResultList());
 		quizLength = listOfQuestions.size();
 
 		String player = getPlayerName(sc);
-		int numOfQuestions = getNumOfQuestions(sc);
+		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
 		runQuiz(numOfQuestions, listOfQuestions, sc);
 	}
 
 	private static void runQuiz(int numOfQuestions, List<JavaTrueFalseEntity> listOfQuestions, Scanner sc) {
 		List<Integer> questionsAsked = new ArrayList<>();
-		int score;
 
+		printAndGetInput(numOfQuestions, listOfQuestions, sc, questionsAsked);
+
+		quizDone(numOfQuestions, score);
+	}
+
+	private static void printAndGetInput(int numOfQuestions, List<JavaTrueFalseEntity> listOfQuestions, Scanner sc, List<Integer> questionsAsked) {
 		int randomNum;
 		for (int i = 0; i < numOfQuestions; i++) {
 			randomNum = getRandomNumber(numOfQuestions);
 
-			if (!questionsAsked.isEmpty() && questionsAsked.contains(randomNum)) {
-				do {
-					randomNum = getRandomNumber(numOfQuestions);
-				} while (questionsAsked.contains(randomNum));
-			}
+			randomNum = checkIfDuplicate(numOfQuestions, questionsAsked, randomNum);
 
 			JavaTrueFalseEntity getQuestion = listOfQuestions.get(randomNum);
 
 			System.out.println(getQuestion.showQuestion());
 			questionsAsked.add(randomNum);
-			sc.nextLine();
+			printEnterAnsTF();
+			byte userInput = getBoolean(sc);
+
+			printRightOrWrong(userInput, getQuestion);
 		}
 	}
 
-	private static int getRandomNumber(int numOfQuestions) {
-		Random rand = new Random();
-		return rand.nextInt(numOfQuestions + 1);
-	}
-
-	private static int getNumOfQuestions(Scanner sc) {
-		if (quizLength >= 10) {
-			System.out.print("Would you like to have 5 or 10 questions in the quiz? ");
-			return Tools.getFiveOrTen(sc);
-		} else
-			return Math.min(quizLength, 5);
-	}
-
-	private static String getPlayerName(Scanner sc) {
-		System.out.print("Insert name: ");
-		return sc.nextLine();
+	private static void printRightOrWrong(byte userInput, JavaTrueFalseEntity getQuestion) {
+		if (userInput == getQuestion.getJavaTfAnswer()) {
+			System.out.println("Correct answer!\n");
+			score++;
+		} else {
+			System.out.println("You failed successfully!\n");
+		}
 	}
 }

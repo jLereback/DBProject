@@ -4,6 +4,7 @@ import crud.Create;
 import crud.Delete;
 
 import jakarta.persistence.EntityManager;
+import quiz.JavaTrueFalseQuiz;
 import tools.Tools;
 
 import java.util.Scanner;
@@ -33,14 +34,17 @@ public class Menu {
 
 	private static void printMainMenu() {
 		System.out.println("""
-				    
-				Spectacle Snakes...
-				-----------------
-				1. True or false - Java
-				2. 1 2 3 - Java
-				3. True or false - Python
-				4. 1 2 3 - Python
-				5. Modify tests
+								
+				SPECTACLE SNAKES
+				----------------
+				QUIZ:
+				1. Java quiz - True/False
+				2. Java quiz - 123
+				3. Python quiz - True/False
+				4. Python quiz - 123
+								
+				CRUD'n ELSE:
+				c, m or 5. Modify tests (this is a compromise)
 				e. Exit
 				""");
 	}
@@ -51,13 +55,11 @@ public class Menu {
 			case "2" -> java123(entityManager, sc);
 			case "3" -> pythonTrueOrFalse(entityManager, sc);
 			case "4" -> python123(entityManager, sc);
-			case "5" -> modifyTests(entityManager);
+			case "c", "m", "5" -> modifyTests(entityManager);
 			case "e" -> System.out.println("Good bye");
 			default -> incorrectInput();
 		}
 	}
-
-
 
 
 	private static void modifyTests(EntityManager entityManager) {
@@ -78,7 +80,7 @@ public class Menu {
 				2. Update a question
 				3. Remove a question
 				4. See all questions
-				5. Return
+				e. Return
 				""");
 	}
 
