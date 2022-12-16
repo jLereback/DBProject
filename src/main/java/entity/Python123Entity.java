@@ -106,13 +106,21 @@ public class Python123Entity {
 		return result;
 	}
 
-		@Override
-		public String toString() {
-			return "Question ID: " + python123Id + "\n" +
-					"Question: " + python123Question + "\n" +
-					"Answer 1: " + python123Answer1 + "\n" +
-					"Answer 2: " + python123Answer2 + "\n" +
-					"Answer 3: " + python123Answer3 + "\n" +
-					"Correct answer: " + python123CorrectAnswer + "\n";
+	@Override
+	public String toString() {
+		return "Question ID: " + python123Id + "\n" +
+				"Question: " + python123Question + "\n" +
+				"Answer 1: " + python123Answer1 + "\n" +
+				"Answer 2: " + python123Answer2 + "\n" +
+				"Answer 3: " + python123Answer3 + "\n" +
+				"Correct answer: " + python123CorrectAnswer + "\n";
+	}
+
+
+	public String showQuestion() {
+		return "Question: " + python123Question + "\n" +
+				"Answer 1: " + python123Answer1 + "\n" +
+				"Answer 2: " + python123Answer2 + "\n" +
+				"Answer 3: " + python123Answer3;
 	}
 }

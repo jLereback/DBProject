@@ -10,8 +10,13 @@ import java.util.Scanner;
 
 import static crud.Read.*;
 import static crud.Update.*;
+import static quiz.Java123Quiz.java123;
+import static quiz.JavaTrueFalseQuiz.javaTrueOrFalse;
+import static quiz.Python123Quiz.python123;
+import static quiz.PythonTrueFalseQuiz.pythonTrueOrFalse;
 import static tools.Tools.getInputToLowerCase;
 import static tools.Tools.incorrectInput;
+
 
 public class Menu {
 	private static final Scanner sc = new Scanner(System.in);
@@ -42,31 +47,18 @@ public class Menu {
 
 	private static void mainSwitch(EntityManager entityManager, String choice) {
 		switch (choice) {
-			case "1" -> javaTrueOrFalse();
-			case "2" -> java123();
-			case "3" -> pythonTrueOrFalse();
-			case "4" -> python123();
+			case "1" -> javaTrueOrFalse(entityManager, sc);
+			case "2" -> java123(entityManager, sc);
+			case "3" -> pythonTrueOrFalse(entityManager, sc);
+			case "4" -> python123(entityManager, sc);
 			case "5" -> modifyTests(entityManager);
 			case "e" -> System.out.println("Good bye");
 			default -> incorrectInput();
 		}
 	}
 
-	private static void javaTrueOrFalse() {
-		//TODO QUIZ
-	}
 
-	private static void java123() {
-		//TODO QUIZ
-	}
 
-	private static void pythonTrueOrFalse() {
-		//TODO QUIZ
-	}
-
-	private static void python123() {
-		//TODO QUIZ
-	}
 
 	private static void modifyTests(EntityManager entityManager) {
 		entityManager.getTransaction().begin();
@@ -222,4 +214,6 @@ public class Menu {
 				e. Go back
 				""";
 	}
+
+
 }

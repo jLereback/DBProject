@@ -68,6 +68,9 @@ public class  JavaTrueFalseEntity {
 		return "Question ID: " + javaTfId + "\n" +
 				"Question: " + javaTfQuestion + "\n" +
 				"Answer: " + javaTfAnswer + "\n";
+	}
 
+	public String showQuestion() {
+		return "Question: " + javaTfQuestion;
 	}
 }

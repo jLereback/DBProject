@@ -71,4 +71,8 @@ public class PythonTrueFalseEntity {
 				"Answer: " + pythonTfAnswer + "\n";
 
 	}
+
+	public String showQuestion() {
+		return "Question: " + pythonTfQuestion;
+	}
 }

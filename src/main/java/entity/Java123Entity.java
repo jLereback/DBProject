@@ -116,4 +116,11 @@ public class Java123Entity {
 				"Answer 3: " + java123Answer3 + "\n" +
 				"Correct answer: " + java123CorrectAnswer + "\n";
 	}
+	public String showQuestion() {
+		return "Question: " + java123Question + "\n" +
+				"Answer 1: " + java123Answer1 + "\n" +
+				"Answer 2: " + java123Answer2 + "\n" +
+				"Answer 3: " + java123Answer3;
+	}
+
 }

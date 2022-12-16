@@ -20,6 +20,22 @@ public class Tools {
 		}
 		return n;
 	}
+	public static int getFiveOrTen(Scanner sc) {
+		int n = 0;
+		boolean is5Or10 = false;
+		while (!is5Or10) {
+			try {
+				n = Integer.parseInt(sc.nextLine());
+				if (n == 5 || n == 10)
+					is5Or10 = true;
+				else
+					throw new Exception();
+			} catch (Exception e) {
+				System.out.println("Enter 5 or 10");
+			}
+		}
+		return n;
+	}
 
 	public static int getInt(Scanner sc) {
 		while (true) {
