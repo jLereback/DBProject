@@ -1,0 +1,11 @@
+CREATE TABLE leaderboard(
+    leaderboardId INT NOT NULL AUTO_INCREMENT,
+    LBPlayerName VARCHAR(255),
+    LBJavaTFScore INT,
+    LBJava123Score INT,
+    LBPythonTFScore INT,
+    LBPython123Score INT,
+    PRIMARY KEY (leaderboardId)
+);
+
+CREATE UNIQUE INDEX uniquePlayer ON leaderboard(LBPlayerName);
