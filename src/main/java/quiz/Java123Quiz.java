@@ -23,10 +23,47 @@ public class Java123Quiz {
 		List<Java123Entity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM Java123Entity j").getResultList());
 		quizLength = listOfQuestions.size();
 
-		String player = getPlayerName(sc);
+		playerName = createPlayer(entityManager, sc);
 		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
 		runQuiz(numOfQuestions, listOfQuestions, sc);
+
+		addToLeaderBoard(entityManager, playerName);
+
+	}
+	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
+		entityManager.getTransaction().begin();
+
+		if (checkIfPlayerExist(entityManager, playerName)) {
+			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
+			if (checkScore(entityManager, playerName) > score) {
+				return;
+			} else {
+				leaderboard.setLbJava123Score(score);
+				entityManager.persist(leaderboard);
+			}
+		}
+
+		entityManager.getTransaction().commit();
+
+	}
+
+
+	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
+		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
+				.getResultStream().filter(name -> name.equals(playerName)).reduce((first, second) -> second).isPresent();
+	}
+
+	public static int checkScore(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbJava123Score FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().orElse(0)));
+
+	}
+
+	public static int getPlayerID(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().get()));
+
 	}
 
 	private static void runQuiz(int numOfQuestions, List<Java123Entity> listOfQuestions, Scanner sc) {

@@ -1,5 +1,8 @@
 package tools;
 
+import entity.LeaderboardEntity;
+import jakarta.persistence.EntityManager;
+
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -43,10 +46,41 @@ public class QuizTools {
 		return randomNum;
 	}
 
-	public static void quizDone(int numOfQuestions, int score) {
+
+	public static String createPlayer(EntityManager entityManager, Scanner sc) {
+		String playerName = getPlayerName(sc);
+
+		if (checkIfPlayerExist(entityManager, playerName))
+			return playerName;
+
+		entityManager.getTransaction().begin();
+
+		LeaderboardEntity leaderboard = new LeaderboardEntity();
+
+		leaderboard.setLbPlayerName(playerName);
+
+		leaderboard.setLbJavaTfScore(0);
+		leaderboard.setLbJava123Score(0);
+		leaderboard.setLbPythonTfScore(0);
+		leaderboard.setLbPython123Score(0);
+
+		entityManager.persist(leaderboard);
+
+		entityManager.getTransaction().commit();
+		return playerName;
+	}
+
+	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
+		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
+				.getResultStream().filter(name -> name.equals(playerName)).reduce((first, second) -> second).isPresent();
+	}
+
+	public static int quizDoneAndGetScore(int numOfQuestions, int score) {
+		double scoreAsDouble = (double) score / numOfQuestions * 100;
 		System.out.println("Quiz is done");
 		System.out.println("Your score was " + score + " out of " + numOfQuestions);
-		System.out.printf("That's %.0f %% correct answers\n\n", (double) score / numOfQuestions * 100);
+		System.out.printf("That's %.0f %% correct answers\n\n", scoreAsDouble);
+		return (int) scoreAsDouble;
 	}
 }
 

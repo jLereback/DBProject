@@ -18,15 +18,52 @@ public class Python123Quiz {
 	static String playerName;
 
 	public static void python123(EntityManager entityManager,Scanner sc) {
-		score = 0;
+		numCorrectAnswers = 0;
 		List<Python123Entity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT p FROM Python123Entity p").getResultList());
 		quizLength = listOfQuestions.size();
 
-		String player = getPlayerName(sc);
+		playerName = createPlayer(entityManager, sc);
 		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
 		runQuiz(numOfQuestions, listOfQuestions, sc);
 
+		addToLeaderBoard(entityManager, playerName);
+
+
+	}
+
+	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
+		entityManager.getTransaction().begin();
+
+		if (checkIfPlayerExist(entityManager, playerName)) {
+			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
+			if (checkScore(entityManager, playerName) > score) {
+				return;
+			} else {
+				leaderboard.setLbPython123Score(score);
+				entityManager.persist(leaderboard);
+			}
+		}
+
+		entityManager.getTransaction().commit();
+
+	}
+
+
+	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
+		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
+				.getResultStream().filter(name -> name.equals(playerName)).reduce((first, second) -> second).isPresent();
+	}
+
+	public static int checkScore(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbPython123Score FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().orElse("0")));
+
+	}
+
+	public static int getPlayerID(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().get()));
 
 	}
 	private static void runQuiz(int numOfQuestions, List<Python123Entity> listOfQuestions, Scanner sc) {
@@ -59,7 +96,7 @@ public class Python123Quiz {
 	private static void printRightOrWrong(int userInput, Python123Entity getQuestion) {
 		if (userInput == getQuestion.getPython123CorrectAnswer()) {
 			System.out.println("Correct answer!\n");
-			score++;
+			numCorrectAnswers++;
 		} else {
 			System.out.println("You failed successfully!\n");
 		}

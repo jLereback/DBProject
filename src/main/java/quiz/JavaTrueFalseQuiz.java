@@ -17,13 +17,15 @@ public class JavaTrueFalseQuiz {
 	static int quizLength;
 	static int numCorrectAnswers;
 	static int score;
+	static String playerName;
 
 	public static void javaTrueOrFalse(EntityManager entityManager, Scanner sc) {
 		numCorrectAnswers = 0;
 		List<JavaTrueFalseEntity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM JavaTrueFalseEntity j").getResultList());
 		quizLength = listOfQuestions.size();
 
-		String playerName = getPlayerName(sc);
+
+		playerName = createPlayer(entityManager, sc);
 		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
 		runQuiz(numOfQuestions, listOfQuestions, sc);
@@ -32,23 +34,19 @@ public class JavaTrueFalseQuiz {
 
 	}
 
+
 	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
 		entityManager.getTransaction().begin();
 
 		if (checkIfPlayerExist(entityManager, playerName)) {
 			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
+
 			if (checkScore(entityManager, playerName) > score) {
 				return;
 			} else {
 				leaderboard.setLbJavaTfScore(score);
 				entityManager.persist(leaderboard);
 			}
-		} else {
-			LeaderboardEntity leaderboard = new LeaderboardEntity();
-			leaderboard.setLbPlayerName(playerName);
-			leaderboard.setLbJavaTfScore(score);
-			entityManager.persist(leaderboard);
-
 		}
 
 		entityManager.getTransaction().commit();

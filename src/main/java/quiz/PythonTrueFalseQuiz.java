@@ -24,14 +24,53 @@ public class PythonTrueFalseQuiz {
 		List<PythonTrueFalseEntity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT p FROM PythonTrueFalseEntity p").getResultList());
 		quizLength = listOfQuestions.size();
 
-			String player = getPlayerName(sc);
-			int numOfQuestions = getNumOfQuestions(sc, quizLength);
+		playerName = createPlayer(entityManager, sc);
+		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
-			runQuiz(numOfQuestions, listOfQuestions, sc);
+		runQuiz(numOfQuestions, listOfQuestions, sc);
+
+		addToLeaderBoard(entityManager, playerName);
+	}
+
+
+	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
+		entityManager.getTransaction().begin();
+
+		if (checkIfPlayerExist(entityManager, playerName)) {
+			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
+			if (checkScore(entityManager, playerName) > score) {
+				return;
+			} else {
+				leaderboard.setLbPythonTfScore(score);
+				entityManager.persist(leaderboard);
+			}
 		}
 
-		private static void runQuiz(int numOfQuestions, List<PythonTrueFalseEntity> listOfQuestions, Scanner sc) {
-			List<Integer> questionsAsked = new ArrayList<>();
+		entityManager.getTransaction().commit();
+
+	}
+
+
+	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
+		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
+				.getResultStream().filter(name -> name.equals(playerName)).reduce((first, second) -> second).isPresent();
+	}
+
+	public static int checkScore(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbPythonTfScore FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().orElse("0")));
+
+	}
+
+	public static int getPlayerID(EntityManager entityManager, String playerName) {
+		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
+				.getResultStream().findFirst().get()));
+
+	}
+
+
+	private static void runQuiz(int numOfQuestions, List<PythonTrueFalseEntity> listOfQuestions, Scanner sc) {
+		List<Integer> questionsAsked = new ArrayList<>();
 
 		printAndGetInput(numOfQuestions, listOfQuestions, sc, questionsAsked);
 
