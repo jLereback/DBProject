@@ -87,4 +87,16 @@ public class LeaderboardEntity {
 	public int hashCode() {
 		return Objects.hash(leaderboardId, lbPlayerName, lbJavaTfScore, lbJava123Score, lbPythonTfScore, lbPython123Score);
 	}
+
+	@Override
+	public String toString() {
+		return "LeaderboardEntity{" +
+				"leaderboardId=" + leaderboardId +
+				", lbPlayerName='" + lbPlayerName + '\'' +
+				", lbJavaTfScore=" + lbJavaTfScore +
+				", lbJava123Score=" + lbJava123Score +
+				", lbPythonTfScore=" + lbPythonTfScore +
+				", lbPython123Score=" + lbPython123Score +
+				'}';
+	}
 }

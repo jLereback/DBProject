@@ -1,6 +1,6 @@
-CREATE TABLE leaderboard(
+ CREATE TABLE leaderboard(
     leaderboardId INT NOT NULL AUTO_INCREMENT,
-    LBPlayerName VARCHAR(255),
+    LBPlayerName VARCHAR(255) NOT NULL,
     LBJavaTFScore INT,
     LBJava123Score INT,
     LBPythonTFScore INT,
