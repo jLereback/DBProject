@@ -67,10 +67,6 @@ public class LeaderboardEntity {
 		this.lbPythonTfScore = lbPythonTfScore;
 	}
 
-	public Integer getLbPython123Score() {
-		return lbPython123Score;
-	}
-
 	public void setLbPython123Score(Integer lbPython123Score) {
 		this.lbPython123Score = lbPython123Score;
 	}
