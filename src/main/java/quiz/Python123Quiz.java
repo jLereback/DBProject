@@ -1,6 +1,6 @@
 package quiz;
 
-import entity.JavaTrueFalseEntity;
+import entity.LeaderboardEntity;
 import entity.Python123Entity;
 import jakarta.persistence.EntityManager;
 import tools.Tools;
@@ -10,11 +10,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import static tools.QuizTools.*;
-import static tools.Tools.getBoolean;
 
 public class Python123Quiz {
 	static int quizLength;
+	static int numCorrectAnswers;
 	static int score;
+	static String playerName;
 
 	public static void python123(EntityManager entityManager,Scanner sc) {
 		score = 0;
@@ -33,7 +34,7 @@ public class Python123Quiz {
 
 		printAndGetInput(numOfQuestions, listOfQuestions, sc, questionsAsked);
 
-		quizDone(numOfQuestions, score);
+		score = quizDoneAndGetScore(numOfQuestions, numCorrectAnswers);
 	}
 
 	private static void printAndGetInput(int numOfQuestions, List<Python123Entity> listOfQuestions, Scanner sc, List<Integer> questionsAsked) {

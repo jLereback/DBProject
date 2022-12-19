@@ -1,23 +1,25 @@
 package quiz;
 
 import entity.Java123Entity;
+import entity.LeaderboardEntity;
 import jakarta.persistence.EntityManager;
-import tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static tools.QuizTools.*;
-import static tools.Tools.getBoolean;
 import static tools.Tools.getInt123;
 
 public class Java123Quiz {
 	static int quizLength;
+	static int numCorrectAnswers;
 	static int score;
+	static String playerName;
+
 
 	public static void java123(EntityManager entityManager, Scanner sc) {
-		score = 0;
+		numCorrectAnswers = 0;
 		List<Java123Entity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM Java123Entity j").getResultList());
 		quizLength = listOfQuestions.size();
 
@@ -32,7 +34,7 @@ public class Java123Quiz {
 
 		printAndGetInput(numOfQuestions, listOfQuestions, sc, questionsAsked);
 
-		quizDone(numOfQuestions, score);
+		score = quizDoneAndGetScore(numOfQuestions, numCorrectAnswers);
 	}
 
 	private static void printAndGetInput(int numOfQuestions, List<Java123Entity> listOfQuestions, Scanner sc, List<Integer> questionsAsked) {
@@ -58,7 +60,7 @@ public class Java123Quiz {
 	private static void printRightOrWrong(int userInput, Java123Entity getQuestion) {
 		if (userInput == getQuestion.getJava123CorrectAnswer()) {
 			System.out.println("Correct answer!\n");
-			score++;
+			numCorrectAnswers++;
 		} else {
 			System.out.println("You failed successfully!\n");
 		}
