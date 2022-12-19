@@ -99,4 +99,20 @@ public class LeaderboardEntity {
 				", lbPython123Score=" + lbPython123Score +
 				'}';
 	}
+
+	public String javaTfLeaderboard() {
+		return lbPlayerName + ", "+ lbJavaTfScore;
+	}
+
+	public String java123Leaderboard() {
+		return lbPlayerName + ", "+ lbJava123Score;
+	}
+
+	public String pythonTfLeaderboard() {
+		return lbPlayerName + ", "+ lbPythonTfScore;
+	}
+
+	public String python123Leaderboard() {
+		return lbPlayerName + ", "+ lbPython123Score;
+	}
 }

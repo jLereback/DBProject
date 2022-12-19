@@ -42,9 +42,12 @@ public class Menu {
 				2. Java quiz - 123
 				3. Python quiz - True/False
 				4. Python quiz - 123
+				
+				LEADERBOARD:
+				5. Leaderboard
 								
 				CRUD'n ELSE:
-				c, m or 5. Modify tests (this is a compromise)
+				c, m or 6. Modify tests (this is a compromise)
 				e. Exit
 				""");
 	}
@@ -55,12 +58,48 @@ public class Menu {
 			case "2" -> java123(entityManager, sc);
 			case "3" -> pythonTrueOrFalse(entityManager, sc);
 			case "4" -> python123(entityManager, sc);
-			case "c", "m", "5" -> modifyTests(entityManager);
+			case "5" -> leaderboard(entityManager, sc);
+			case "c", "m", "6" -> modifyTests(entityManager);
 			case "e" -> System.out.println("Good bye");
 			default -> incorrectInput();
 		}
 	}
 
+	private static void leaderboard(EntityManager entityManager, Scanner sc) {
+		entityManager.getTransaction().begin();
+		String choice;
+		do {
+			printLeaderboardMenu();
+			choice = getInputToLowerCase(sc);
+			leaderboardSwitch(entityManager, choice);
+		} while (!choice.equals("e"));
+		entityManager.getTransaction().commit();
+	}
+
+	private static void printLeaderboardMenu() {
+		System.out.println("""
+				
+				What leaderboard would you like to see?
+				1. Java True/False
+				2. Java123
+				3. Python True/False
+				4. Python123
+				5. Count total players
+				e. Go back
+				""");
+	}
+
+	private static void leaderboardSwitch(EntityManager entityManager, String choice) {
+		switch (choice) {
+			case "1" -> printJavaTfLeaderboard(entityManager);
+			case "2" -> printJava123Leaderboard(entityManager);
+			case "3" -> printPythonTfLeaderboard(entityManager);
+			case "4" -> printPython123Leaderboard(entityManager);
+			case "5" -> printTotalNumOfPlayers(entityManager);
+			case "e" -> System.out.println("Back to main menu");
+			default -> incorrectInput();
+		}
+	}
 
 	private static void modifyTests(EntityManager entityManager) {
 		entityManager.getTransaction().begin();
