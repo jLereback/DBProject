@@ -17,7 +17,6 @@ public class PythonTrueFalseQuiz {
 	static int score;
 	static String playerName;
 
-
 	public static void pythonTrueOrFalse(EntityManager entityManager, Scanner sc) {
 
 		numCorrectAnswers = 0;
@@ -32,24 +31,21 @@ public class PythonTrueFalseQuiz {
 		addToLeaderBoard(entityManager, playerName);
 	}
 
-
 	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
 		entityManager.getTransaction().begin();
 
 		if (checkIfPlayerExist(entityManager, playerName)) {
 			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
 			if (checkScore(entityManager, playerName) > score) {
+				entityManager.getTransaction().commit();
 				return;
 			} else {
 				leaderboard.setLbPythonTfScore(score);
 				entityManager.persist(leaderboard);
 			}
 		}
-
 		entityManager.getTransaction().commit();
-
 	}
-
 
 	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
 		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
@@ -59,15 +55,12 @@ public class PythonTrueFalseQuiz {
 	public static int checkScore(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbPythonTfScore FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().orElse("0")));
-
 	}
 
 	public static int getPlayerID(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().get()));
-
 	}
-
 
 	private static void runQuiz(int numOfQuestions, List<PythonTrueFalseEntity> listOfQuestions, Scanner sc) {
 		List<Integer> questionsAsked = new ArrayList<>();
@@ -94,7 +87,6 @@ public class PythonTrueFalseQuiz {
 			printRightOrWrong(userInput, getQuestion);
 		}
 	}
-
 
 	private static void printRightOrWrong(byte userInput, PythonTrueFalseEntity getQuestion) {
 		if (userInput == getQuestion.getPythonTfAnswer()) {

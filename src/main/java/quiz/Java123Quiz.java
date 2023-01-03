@@ -17,7 +17,6 @@ public class Java123Quiz {
 	static int score;
 	static String playerName;
 
-
 	public static void java123(EntityManager entityManager, Scanner sc) {
 		numCorrectAnswers = 0;
 		List<Java123Entity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM Java123Entity j").getResultList());
@@ -29,25 +28,23 @@ public class Java123Quiz {
 		runQuiz(numOfQuestions, listOfQuestions, sc);
 
 		addToLeaderBoard(entityManager, playerName);
-
 	}
+
 	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
 		entityManager.getTransaction().begin();
 
 		if (checkIfPlayerExist(entityManager, playerName)) {
 			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
 			if (checkScore(entityManager, playerName) > score) {
+				entityManager.getTransaction().commit();
 				return;
 			} else {
 				leaderboard.setLbJava123Score(score);
 				entityManager.persist(leaderboard);
 			}
 		}
-
 		entityManager.getTransaction().commit();
-
 	}
-
 
 	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
 		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
@@ -57,13 +54,11 @@ public class Java123Quiz {
 	public static int checkScore(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbJava123Score FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().orElse(0)));
-
 	}
 
 	public static int getPlayerID(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().get()));
-
 	}
 
 	private static void runQuiz(int numOfQuestions, List<Java123Entity> listOfQuestions, Scanner sc) {
@@ -91,8 +86,6 @@ public class Java123Quiz {
 			printRightOrWrong(userInput, getQuestion);
 		}
 	}
-
-
 
 	private static void printRightOrWrong(int userInput, Java123Entity getQuestion) {
 		if (userInput == getQuestion.getJava123CorrectAnswer()) {

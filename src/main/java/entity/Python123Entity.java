@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "python123", schema = "dbProject")
 public class Python123Entity {
@@ -28,11 +30,7 @@ public class Python123Entity {
 	public int getPython123Id() {
 		return python123Id;
 	}
-
-	public void setPython123Id(int python123Id) {
-		this.python123Id = python123Id;
-	}
-
+	
 	public String getPython123Question() {
 		return python123Question;
 	}
@@ -40,27 +38,15 @@ public class Python123Entity {
 	public void setPython123Question(String python123Question) {
 		this.python123Question = python123Question;
 	}
-
-	public String getPython123Answer1() {
-		return python123Answer1;
-	}
-
+	
 	public void setPython123Answer1(String python123Answer1) {
 		this.python123Answer1 = python123Answer1;
 	}
-
-	public String getPython123Answer2() {
-		return python123Answer2;
-	}
-
+	
 	public void setPython123Answer2(String python123Answer2) {
 		this.python123Answer2 = python123Answer2;
 	}
-
-	public String getPython123Answer3() {
-		return python123Answer3;
-	}
-
+	
 	public void setPython123Answer3(String python123Answer3) {
 		this.python123Answer3 = python123Answer3;
 	}
@@ -81,18 +67,15 @@ public class Python123Entity {
 		Python123Entity that = (Python123Entity) o;
 
 		if (python123Id != that.python123Id) return false;
-		if (python123Question != null ? !python123Question.equals(that.python123Question) : that.python123Question != null)
+		if (!Objects.equals(python123Question, that.python123Question))
 			return false;
-		if (python123Answer1 != null ? !python123Answer1.equals(that.python123Answer1) : that.python123Answer1 != null)
+		if (!Objects.equals(python123Answer1, that.python123Answer1))
 			return false;
-		if (python123Answer2 != null ? !python123Answer2.equals(that.python123Answer2) : that.python123Answer2 != null)
+		if (!Objects.equals(python123Answer2, that.python123Answer2))
 			return false;
-		if (python123Answer3 != null ? !python123Answer3.equals(that.python123Answer3) : that.python123Answer3 != null)
+		if (!Objects.equals(python123Answer3, that.python123Answer3))
 			return false;
-		if (python123CorrectAnswer != null ? !python123CorrectAnswer.equals(that.python123CorrectAnswer) : that.python123CorrectAnswer != null)
-			return false;
-
-		return true;
+		return Objects.equals(python123CorrectAnswer, that.python123CorrectAnswer);
 	}
 
 	@Override
@@ -115,7 +98,6 @@ public class Python123Entity {
 				"Answer 3: " + python123Answer3 + "\n" +
 				"Correct answer: " + python123CorrectAnswer + "\n";
 	}
-
 
 	public String showQuestion() {
 		return "Question: " + python123Question + "\n" +

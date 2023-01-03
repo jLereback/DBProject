@@ -7,11 +7,11 @@ import entity.PythonTrueFalseEntity;
 import jakarta.persistence.EntityManager;
 import tools.Tools;
 
-import static crud.Read.*;
 import java.util.Scanner;
 
-public class Update {
+import static crud.Read.*;
 
+public class Update {
 	public static void updateJava123(EntityManager entityManager, Scanner sc) {
 		printJava123(entityManager);
 		askForQuestionToUpdate();
@@ -29,7 +29,6 @@ public class Update {
 		entityManager.persist(java123);
 
 		System.out.println("You have updated a question");
-
 	}
 
 	public static void updateJavaTrueFalse(EntityManager entityManager, Scanner sc) {
@@ -62,9 +61,6 @@ public class Update {
 		entityManager.persist(python123);
 
 		System.out.println("You have updated a question");
-
-
-
 	}
 
 	public static void updatePythonTrueFalse(EntityManager entityManager, Scanner sc) {
@@ -78,11 +74,9 @@ public class Update {
 		entityManager.persist(pythonTrueFalse);
 
 		System.out.println("You have updated a question");
-
 	}
+
 	private static void askForQuestionToUpdate() {
 		System.out.println("Which question ID would you like to update?: ");
 	}
-
 }
-

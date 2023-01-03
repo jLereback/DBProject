@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 
 public class QuizTools {
-
 	public static int getRandomNumber(int numOfQuestions) {
 		Random rand = new Random();
 		return rand.nextInt(numOfQuestions);
@@ -19,9 +18,7 @@ public class QuizTools {
 		if (quizLength >= 10) {
 			System.out.print("Would you like to have 5 or 10 questions in the quiz? ");
 			return Tools.getFiveOrTen(sc);
-		}
-		else return Math.min(quizLength, 5);
-
+		} else return Math.min(quizLength, 5);
 	}
 
 	public static String getPlayerName(Scanner sc) {
@@ -45,7 +42,6 @@ public class QuizTools {
 		}
 		return randomNum;
 	}
-
 
 	public static String createPlayer(EntityManager entityManager, Scanner sc) {
 		String playerName = getPlayerName(sc);
@@ -83,4 +79,3 @@ public class QuizTools {
 		return (int) scoreAsDouble;
 	}
 }
-

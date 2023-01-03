@@ -27,40 +27,16 @@ public class LeaderboardEntity {
 	@Column(name = "LBPython123Score")
 	private Integer lbPython123Score;
 
-	public int getLeaderboardId() {
-		return leaderboardId;
-	}
-
-	public void setLeaderboardId(int leaderboardId) {
-		this.leaderboardId = leaderboardId;
-	}
-
-	public String getLbPlayerName() {
-		return lbPlayerName;
-	}
-
 	public void setLbPlayerName(String lbPlayerName) {
 		this.lbPlayerName = lbPlayerName;
-	}
-
-	public Integer getLbJavaTfScore() {
-		return lbJavaTfScore;
 	}
 
 	public void setLbJavaTfScore(Integer lbJavaTfScore) {
 		this.lbJavaTfScore = lbJavaTfScore;
 	}
 
-	public Integer getLbJava123Score() {
-		return lbJava123Score;
-	}
-
 	public void setLbJava123Score(Integer lbJava123Score) {
 		this.lbJava123Score = lbJava123Score;
-	}
-
-	public Integer getLbPythonTfScore() {
-		return lbPythonTfScore;
 	}
 
 	public void setLbPythonTfScore(Integer lbPythonTfScore) {

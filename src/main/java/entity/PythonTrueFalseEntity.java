@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "pythonTrueFalse", schema = "dbProject")
 public class PythonTrueFalseEntity {
@@ -18,10 +20,6 @@ public class PythonTrueFalseEntity {
 
 	public int getPythonTfId() {
 		return pythonTfId;
-	}
-
-	public void setPythonTfId(int pythonTfId) {
-		this.pythonTfId = pythonTfId;
 	}
 
 	public String getPythonTfQuestion() {
@@ -48,12 +46,9 @@ public class PythonTrueFalseEntity {
 		PythonTrueFalseEntity that = (PythonTrueFalseEntity) o;
 
 		if (pythonTfId != that.pythonTfId) return false;
-		if (pythonTfQuestion != null ? !pythonTfQuestion.equals(that.pythonTfQuestion) : that.pythonTfQuestion != null)
+		if (!Objects.equals(pythonTfQuestion, that.pythonTfQuestion))
 			return false;
-		if (pythonTfAnswer != null ? !pythonTfAnswer.equals(that.pythonTfAnswer) : that.pythonTfAnswer != null)
-			return false;
-
-		return true;
+		return Objects.equals(pythonTfAnswer, that.pythonTfAnswer);
 	}
 
 	@Override
@@ -69,7 +64,6 @@ public class PythonTrueFalseEntity {
 		return "Question ID: " + pythonTfId + "\n" +
 				"Question: " + pythonTfQuestion + "\n" +
 				"Answer: " + pythonTfAnswer + "\n";
-
 	}
 
 	public String showQuestion() {

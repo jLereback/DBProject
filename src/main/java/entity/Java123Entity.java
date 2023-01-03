@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 
 @Table(name = "java123", schema = "dbProject")
@@ -30,10 +32,6 @@ public class Java123Entity {
 		return java123Id;
 	}
 
-	public void setJava123Id(int java123Id) {
-		this.java123Id = java123Id;
-	}
-
 	public String getJava123Question() {
 		return java123Question;
 	}
@@ -42,25 +40,14 @@ public class Java123Entity {
 		this.java123Question = java123Question;
 	}
 
-	public String getJava123Answer1() {
-		return java123Answer1;
-	}
-
 	public void setjava123Answer1(String java123Answer1) {
 		this.java123Answer1 = java123Answer1;
-	}
-
-	public String getJava123Answer2() {
-		return java123Answer2;
 	}
 
 	public void setjava123Answer2(String java123Answer2) {
 		this.java123Answer2 = java123Answer2;
 	}
 
-	public String getJava123Answer3() {
-		return java123Answer3;
-	}
 
 	public void setjava123Answer3(String java123Answer3) {
 		this.java123Answer3 = java123Answer3;
@@ -82,18 +69,15 @@ public class Java123Entity {
 		Java123Entity that = (Java123Entity) o;
 
 		if (java123Id != that.java123Id) return false;
-		if (java123Question != null ? !java123Question.equals(that.java123Question) : that.java123Question != null)
+		if (!Objects.equals(java123Question, that.java123Question))
 			return false;
-		if (java123Answer1 != null ? !java123Answer1.equals(that.java123Answer1) : that.java123Answer1 != null)
+		if (!Objects.equals(java123Answer1, that.java123Answer1))
 			return false;
-		if (java123Answer2 != null ? !java123Answer2.equals(that.java123Answer2) : that.java123Answer2 != null)
+		if (!Objects.equals(java123Answer2, that.java123Answer2))
 			return false;
-		if (java123Answer3 != null ? !java123Answer3.equals(that.java123Answer3) : that.java123Answer3 != null)
+		if (!Objects.equals(java123Answer3, that.java123Answer3))
 			return false;
-		if (java123CorrectAnswer != null ? !java123CorrectAnswer.equals(that.java123CorrectAnswer) : that.java123CorrectAnswer != null)
-			return false;
-
-		return true;
+		return Objects.equals(java123CorrectAnswer, that.java123CorrectAnswer);
 	}
 
 	@Override
@@ -116,11 +100,11 @@ public class Java123Entity {
 				"Answer 3: " + java123Answer3 + "\n" +
 				"Correct answer: " + java123CorrectAnswer + "\n";
 	}
+
 	public String showQuestion() {
 		return "Question: " + java123Question + "\n" +
 				"Answer 1: " + java123Answer1 + "\n" +
 				"Answer 2: " + java123Answer2 + "\n" +
 				"Answer 3: " + java123Answer3;
 	}
-
 }

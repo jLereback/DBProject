@@ -2,9 +2,7 @@ package menu;
 
 import crud.Create;
 import crud.Delete;
-
 import jakarta.persistence.EntityManager;
-import quiz.JavaTrueFalseQuiz;
 import tools.Tools;
 
 import java.util.Scanner;

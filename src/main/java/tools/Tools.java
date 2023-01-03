@@ -20,6 +20,7 @@ public class Tools {
 		}
 		return n;
 	}
+
 	public static int getFiveOrTen(Scanner sc) {
 		int n = 0;
 		boolean is5Or10 = false;
@@ -52,7 +53,7 @@ public class Tools {
 			String answer = sc.nextLine().toLowerCase();
 			if (answer.equals("true") || answer.equals("1"))
 				return 1;
-			else if (answer.equals("false")|| answer.equals("0"))
+			else if (answer.equals("false") || answer.equals("0"))
 				return 0;
 			else
 				incorrectInput();
@@ -66,5 +67,4 @@ public class Tools {
 	public static void incorrectInput() {
 		System.out.println("Incorrect input, please try again!");
 	}
-
 }

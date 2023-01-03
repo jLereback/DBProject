@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "javaTrueFalse", schema = "dbProject")
 public class  JavaTrueFalseEntity {
@@ -18,10 +20,6 @@ public class  JavaTrueFalseEntity {
 
 	public int getJavaTfId() {
 		return javaTfId;
-	}
-
-	public void setJavaTfId(int javaTfId) {
-		this.javaTfId = javaTfId;
 	}
 
 	public String getJavaTfQuestion() {
@@ -48,11 +46,9 @@ public class  JavaTrueFalseEntity {
 		JavaTrueFalseEntity that = (JavaTrueFalseEntity) o;
 
 		if (javaTfId != that.javaTfId) return false;
-		if (javaTfQuestion != null ? !javaTfQuestion.equals(that.javaTfQuestion) : that.javaTfQuestion != null)
+		if (!Objects.equals(javaTfQuestion, that.javaTfQuestion))
 			return false;
-		if (javaTfAnswer != null ? !javaTfAnswer.equals(that.javaTfAnswer) : that.javaTfAnswer != null) return false;
-
-		return true;
+		return Objects.equals(javaTfAnswer, that.javaTfAnswer);
 	}
 
 	@Override

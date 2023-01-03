@@ -10,7 +10,6 @@ import tools.Tools;
 import java.util.Scanner;
 
 public class Create {
-
 	public static void addToJavaTrueFalse(EntityManager entityManager, Scanner sc) {
 		JavaTrueFalseEntity javaTrueFalse = new JavaTrueFalseEntity();
 
@@ -24,8 +23,8 @@ public class Create {
 
 		System.out.println("You have added this question:");
 		System.out.println(javaTrueFalse.getJavaTfId() + ". " +
-						   javaTrueFalse.getJavaTfQuestion() + " | " +
-						   javaTrueFalse.getJavaTfAnswer());
+				javaTrueFalse.getJavaTfQuestion() + " | " +
+				javaTrueFalse.getJavaTfAnswer());
 	}
 
 	public static void addToJava123(EntityManager entityManager, Scanner sc) {
@@ -50,8 +49,8 @@ public class Create {
 
 		System.out.println("You have added this question:");
 		System.out.println(java123.getJava123Id() + ". " +
-						   java123.getJava123Question() + " | " +
-						   java123.getJava123CorrectAnswer());
+				java123.getJava123Question() + " | " +
+				java123.getJava123CorrectAnswer());
 	}
 
 	public static void addToPythonTrueFalse(EntityManager entityManager, Scanner sc) {
@@ -67,8 +66,8 @@ public class Create {
 
 		System.out.println("You have added this question:");
 		System.out.println(pythonTrueFalse.getPythonTfId() + ". " +
-						   pythonTrueFalse.getPythonTfQuestion() + " | " +
-						   pythonTrueFalse.getPythonTfAnswer());
+				pythonTrueFalse.getPythonTfQuestion() + " | " +
+				pythonTrueFalse.getPythonTfAnswer());
 	}
 
 	public static void addToPython123(EntityManager entityManager, Scanner sc) {
@@ -93,8 +92,7 @@ public class Create {
 
 		System.out.println("You have added this question:");
 		System.out.println(python123.getPython123Id() + ". " +
-						   python123.getPython123Question() + " | " +
-						   python123.getPython123CorrectAnswer());
+				python123.getPython123Question() + " | " +
+				python123.getPython123CorrectAnswer());
 	}
-
 }

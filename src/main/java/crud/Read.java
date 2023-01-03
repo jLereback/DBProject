@@ -1,13 +1,10 @@
 package crud;
 
-import entity.Java123Entity;
 import entity.LeaderboardEntity;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class Read {
 	public static void printPython123(EntityManager entityManager) {
@@ -29,7 +26,6 @@ public class Read {
 		entityManager.createQuery("SELECT j FROM JavaTrueFalseEntity j")
 				.getResultStream().map(result -> result.toString()).forEach(System.out::println);
 	}
-
 
 	public static void printPython123Leaderboard(EntityManager entityManager) {
 		List<LeaderboardEntity> players = new ArrayList<>(entityManager.createQuery("SELECT l FROM LeaderboardEntity l").getResultList());

@@ -1,10 +1,8 @@
 package quiz;
 
-import entity.Java123Entity;
 import entity.JavaTrueFalseEntity;
 import entity.LeaderboardEntity;
 import jakarta.persistence.EntityManager;
-import tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +22,13 @@ public class JavaTrueFalseQuiz {
 		List<JavaTrueFalseEntity> listOfQuestions = new ArrayList<>(entityManager.createQuery("SELECT j FROM JavaTrueFalseEntity j").getResultList());
 		quizLength = listOfQuestions.size();
 
-
 		playerName = createPlayer(entityManager, sc);
 		int numOfQuestions = getNumOfQuestions(sc, quizLength);
 
 		runQuiz(numOfQuestions, listOfQuestions, sc);
 
 		addToLeaderBoard(entityManager, playerName);
-
 	}
-
 
 	private static void addToLeaderBoard(EntityManager entityManager, String playerName) {
 		entityManager.getTransaction().begin();
@@ -42,17 +37,15 @@ public class JavaTrueFalseQuiz {
 			LeaderboardEntity leaderboard = entityManager.find(LeaderboardEntity.class, getPlayerID(entityManager, playerName));
 
 			if (checkScore(entityManager, playerName) > score) {
+				entityManager.getTransaction().commit();
 				return;
 			} else {
 				leaderboard.setLbJavaTfScore(score);
 				entityManager.persist(leaderboard);
 			}
 		}
-
 		entityManager.getTransaction().commit();
-
 	}
-
 
 	public static boolean checkIfPlayerExist(EntityManager entityManager, String playerName) {
 		return entityManager.createQuery("SELECT lbPlayerName FROM LeaderboardEntity")
@@ -62,16 +55,12 @@ public class JavaTrueFalseQuiz {
 	public static int checkScore(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT lbJavaTfScore FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().orElse("0")));
-
 	}
 
 	public static int getPlayerID(EntityManager entityManager, String playerName) {
 		return Integer.parseInt(String.valueOf(entityManager.createQuery("SELECT leaderboardId FROM LeaderboardEntity WHERE lbPlayerName='" + playerName + "'")
 				.getResultStream().findFirst().get()));
-
 	}
-
-
 
 	private static void runQuiz(int numOfQuestions, List<JavaTrueFalseEntity> listOfQuestions, Scanner sc) {
 		List<Integer> questionsAsked = new ArrayList<>();
